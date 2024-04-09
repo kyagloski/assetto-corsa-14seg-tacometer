@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 from third_party.pyserial.serial import *
 from time import *
 from threading import Thread
@@ -7,11 +8,21 @@ import ac
 import acsys
 from third_party.sim_info import *
 
+port=""
+try:
+    d=os.path.dirname(os.path.realpath(__file__))+'\\com.cfg'
+    f=open(d)
+except:
+    raise Exception("ERROR: com.cfg NOT FOUND")
+    sys.exit()
+COM_PORT="".join(f.readlines()).split('=')[1]
 appName = "Metering"
-width, height = 1 , 1 
-
+width, height = 1 , 1 # width and height of the app's window
 simInfo = SimInfo()
-s = Serial('COM11')
+try: s = Serial(COM_PORT, write_timeout=0.5)
+except:
+    raise Exception("ERROR: COULD NOT FIND COM PORT, INVALID CONFIG\n\tgot port: "+COM_PORT)
+    sys.exit()
 deltaTimer = 0
 maxRpm = 0
 
