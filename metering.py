@@ -16,8 +16,8 @@ except:
     raise Exception("ERROR: com.cfg NOT FOUND")
     sys.exit()
 COM_PORT="".join(f.readlines()).split('=')[1]
-appName = "14 Segment Tacometer"
-width, height = 1 , 1 # width and height of the app's window
+appName = "AC14SegTacometer"
+width, height = 1 , 1
 simInfo = SimInfo()
 try: s = Serial(COM_PORT, write_timeout=0.5)
 except:
