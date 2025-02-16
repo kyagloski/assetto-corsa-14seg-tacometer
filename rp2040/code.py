@@ -122,20 +122,17 @@ def serial_loop():
     timeout = 0
     while 1:
         try:
-            #if serial.in_waiting > 0:  # Check if data is available
             #print("attempting read wo/ waiting...")
             data = serial.read(serial.in_waiting).decode('utf-8').strip()
-            #data = serial.readline().decode('utf-8').strip()
 
             if len(data) < 1: # got nothing move on
                 timeout += 1
 
             else:
                 if DISPLAY_STATE==0: # we got data come back
-                    timeout = 0
                     init_displays()
                     DISPLAY_STATE=1
-
+                timeout = 0
                 input_array = [int(i) for i in data.split(',')]
                 
                 set_rpm(input_array[0])
