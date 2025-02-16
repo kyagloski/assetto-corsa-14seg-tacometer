@@ -1,6 +1,6 @@
 ASSETTO CORSA QUAD-14-SEGMENT DISPLAY TACOMETER<br/>
 
-https://github.com/user-attachments/assets/3dae7164-1e6b-4f3e-9a35-dd4791cce64a<br/>
+https://github.com/user-attachments/assets/3dae7164-1e6b-4f3e-9a35-dd4791cce64a
 
 Default display configuration is set for 100hz refresh <br/>
 Top display is speed in Kph and Mph<br/>
