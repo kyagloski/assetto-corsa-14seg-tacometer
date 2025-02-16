@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 import os
-from third_party.pyserial.serial import *
+#from third_party.pyserial.serial import *
+import serial # idk if this is what i think it is
 from time import *
 from threading import Thread
 import ac
@@ -10,7 +11,7 @@ from third_party.sim_info import *
 
 port=""
 try:
-    d=os.path.dirname(os.path.realpath(__file__))+'\\com.cfg'
+    d=os.path.dirname(os.path.realpath(__file__))+'/com.cfg'
     f=open(d)
 except:
     raise Exception("ERROR: com.cfg NOT FOUND")
