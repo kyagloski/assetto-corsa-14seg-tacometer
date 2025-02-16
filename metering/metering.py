@@ -46,7 +46,6 @@ def appGL(deltaT):
 def acUpdate(deltaT):
     global globalTimer
     global deltaTimer
-    global thread
     global maxRpm
     try:
         globalTimer += deltaT
