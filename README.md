@@ -17,7 +17,7 @@ For use with the adafruit ht16k33 circuitpython library (included in repo)<br/>
 
 INSTRUCTIONS<br/>
 Assetto Corsa:<br/>
-Install the Assetto Corsa mod as a 'Python App' and configure the com.cfg<br/>
+Install the Assetto Corsa mod 'metering' as a 'Python App' and configure the com.cfg<br/>
 to whatever COM port is being used for your rp2040 serial device<br/>
 
 RP2040 Microcontroller:<br/>
