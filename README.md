@@ -15,10 +15,15 @@ For my 14-segment displays I used these EC Digital Tube Module 0.54 Inch 4 digit
 (https://www.amazon.com/EC-Buying-Digital-Display-Segment/dp/B0BXDL1LFT?th=1)<br/>
 For use with the adafruit ht16k33 circuitpython library (included in repo)<br/>
 
+Dependancies: <br/>
+  pyserial, (https://pypi.org/project/pyserial/)<br/>
+  adafruit_ht16k33 (already in repo) (https://github.com/adafruit/Adafruit_CircuitPython_HT16K33/tree/main/adafruit_ht16k33) <br/>
+
 INSTRUCTIONS<br/>
 Assetto Corsa:<br/>
 Install the Assetto Corsa mod 'metering' as a 'Python App' and configure the com.cfg<br/>
 to whatever COM port is being used for your rp2040 serial device<br/>
+Download pyserial and put it in the metering folder (or install pyserial by some other means)<br/>
 
 RP2040 Microcontroller:<br/>
 Configure the i2c hardware definitions accordingly to your<br/>
