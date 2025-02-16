@@ -6,7 +6,7 @@ import time
 from lib.adafruit_ht16k33 import segments, animations
 
 # DISPLAY PARAMETERS
-REFRESH_RATE    = 1/100 # 100hz
+REFRESH_RATE    = 1/120 # 100hz
 DISPLAY_TIMEOUT = (1/REFRESH_RATE) * 20 # 20sec
 DISPLAY_STATE   = 1  # on/off
 DISPLAY_BLINK   = 0  # on/off
@@ -30,6 +30,7 @@ mindisp3 = segments.Seg14x4(i2c, address=TOP_LEFT)
 mindisp4 = segments.Seg14x4(i2c, address=TOP_RIGHT)
 displays=[display1,display2]
 mindisps=[mindisp1,mindisp2,mindisp3,mindisp4]
+
 
 def init_displays():
     for mindisp in mindisps:
@@ -56,6 +57,7 @@ def init_displays():
     display2._put("m",7)
     display2.blink_rate = 0
     display2.show()
+
 
 def set_rpm(num):
     s = f"{num:05d}"[:5]
@@ -95,10 +97,6 @@ def timeout_displays():
     for mindisp in mindisps[::-1]:
         anim=animations.Animation(mindisp)
         anim.chase_forward_and_reverse(delay=0.005, cycles=1)
-    #for display in displays:
-    #    for i in range(0,8):
-    #        display.set_digit_raw(i, 0b00000000000000000)
-    #        display.show()
 
 
 def display_test():
@@ -114,36 +112,30 @@ def display_test():
     time.sleep(0.5)
     timeout_displays()
     print("done!")
-    
+
 
 def serial_loop():
     global DISPLAY_STATE
-    serial  = usb_cdc.console
+    serial = usb_cdc.console
+    serial.timeout = 0
     timeout = 0
     while 1:
         try:
-            #print("attempting read wo/ waiting...")
             data = serial.read(serial.in_waiting).decode('utf-8').strip()
-
             if len(data) < 1: # got nothing move on
                 timeout += 1
-
             else:
                 if DISPLAY_STATE==0: # we got data come back
                     init_displays()
                     DISPLAY_STATE=1
                 timeout = 0
                 input_array = [int(i) for i in data.split(',')]
-                
                 set_rpm(input_array[0])
                 set_gear(input_array[1])
                 set_blink(input_array[2])
                 set_kph(input_array[3])
                 set_mph(input_array[4])
-    
-                #print("received:", data)
         except Exception as e:
-            print("got error:", e)
             timeout+=1
 
         if DISPLAY_STATE == 1 and timeout > DISPLAY_TIMEOUT:
@@ -151,9 +143,6 @@ def serial_loop():
             timeout_displays()
             DISPLAY_STATE = 0
 
-        if timeout%(1/REFRESH_RATE)==0: 
-            print("timeout:", int(timeout*REFRESH_RATE)+1)
-        if timeout>10000: timeout=11 # avoid overflow
         time.sleep(REFRESH_RATE)
 
 
