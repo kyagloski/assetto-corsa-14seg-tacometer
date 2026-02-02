@@ -15,7 +15,7 @@ For my 14-segment displays I used these EC Digital Tube Module 0.54 Inch 4 digit
 (https://www.amazon.com/EC-Buying-Digital-Display-Segment/dp/B0BXDL1LFT?th=1)<br/>
 For use with the adafruit ht16k33 circuitpython library (included in repo)<br/>
 
-Dependancies: <br/>
+Dependencies: <br/>
   pyserial, (https://pypi.org/project/pyserial/)<br/>
   adafruit_ht16k33 (already in repo) (https://github.com/adafruit/Adafruit_CircuitPython_HT16K33/tree/main/adafruit_ht16k33) <br/>
 
